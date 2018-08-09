@@ -60,8 +60,8 @@ def PDA_coupling(TD_A,TD_B,COM_A,COM_B):
         Array of x,y,z coordinates
     Returns
     ----------
-    COM: np.array
-        Array of x,y,z component of COM
+    Coupling: Float
+        Coupling in atomic units
     """
     ang2bohr=1.8897259885789
     COM_A=COM_A*ang2bohr
