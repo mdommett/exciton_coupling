@@ -44,9 +44,10 @@ def xyz_to_matrix(xyz_list):
     """
     coordinate_matrix=np.zeros((len(xyz_list),3))
     for i in range(len(xyz_list)):
-        coordinate_matrix[i,0]=xyz_list[i].split()[1]
-        coordinate_matrix[i,1]=xyz_list[i].split()[2]
-        coordinate_matrix[i,2]=xyz_list[i].split()[3]
+
+        coordinate_matrix[i,0]=xyz_list[i][1]
+        coordinate_matrix[i,1]=xyz_list[i][2]
+        coordinate_matrix[i,2]=xyz_list[i][3]
     return coordinate_matrix
 
 def symbols_from_xyz(xyz_list):
@@ -66,5 +67,5 @@ def symbols_from_xyz(xyz_list):
         """
         symbols=[]
         for i in range(len(xyz_list)):
-            symbols.append(str(xyz_list[i].split()[0]))
+            symbols.append(str(xyz_list[i][0]))
         return symbols
