@@ -157,8 +157,6 @@ def diabatize(dims1,dims2,monA,monB,E1,E2):
 
     return H
 
-elements = ["H","C","N","O","S","Cl","F"]
-atomic = []
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p","--property",help="[TDM] Transition Dipole Moments [TDM] or [ATC] Atomic Transition Charges",default="TDM")
