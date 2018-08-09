@@ -1,12 +1,5 @@
-"""Contains the tools required to calculate the exciton coupling based on PDA
-
-The point dipole appromixation (PDA) calculates the exciton coupling based upon
-the interaction between the transition dipoles of the two systems,
-
-J = u1*u2/R12^5 - 3(u1*R12)(R12*u2) / R12^5
-
-where u1 and u2 are the TD vectors of the two systems and R12 is the vector
-between their centre of masses.
+"""Contains the tools required to calculate the exciton coupling based on Point
+Dipole approximation
 """
 import numpy as np
 from periodic import element
@@ -26,11 +19,11 @@ def centre_of_mass(symbols,coordinates):
         Array of x,y,z coordinates
     Returns
     ----------
-    COM_x,COM_y,COM_z: Floats of centre of mass of x,y,z coordinate
+    COM: np.array
+        Array of x,y,z component of COM
     """
     if len(symbols)!=len(coordinates):
         exit("Inputs not of the same dimension!")
-
     masses = np.array([element(i).mass for i in symbols])
     mass_sum = np.sum(masses)
 
@@ -44,4 +37,34 @@ def centre_of_mass(symbols,coordinates):
     COM_x = x_numerator/mass_sum
     COM_y = y_numerator/mass_sum
     COM_z = z_numerator/mass_sum
-    return COM_x,COM_y,COM_z
+    return np.array([COM_x,COM_y,COM_z])
+
+def PDA_coupling(TD_A,TD_B,COM_A,COM_B):
+    """
+    Calculates the exciton coupling J based on the following equation:
+
+    J = u1*u2/R12^5 - 3(u1*R12)(R12*u2) / R12^5
+
+    where u1 and u2 are the TD vectors of the two systems and R12 is the vector
+    between their centre of masses.
+
+    Parameters
+    ----------
+    TD_A: np.array
+        Array of x,y,z components of transition dipole vector of molecule A
+    TD_B: np.array
+        Array of x,y,z components of transition dipole vector of molecule B
+
+
+    coordinates: Nx3 array of floats
+        Array of x,y,z coordinates
+    Returns
+    ----------
+    COM: np.array
+        Array of x,y,z component of COM
+    """
+    ang2bohr=1.8897259885789
+    COM_A=COM_A*ang2bohr
+    COM_B=COM_B*ang2bohr
+    R=np.linalg.norm(COM_B-COM_A)
+    return (np.dot(TD_A,TD_B)/R**3) - (3*(np.dot(TD_A,COM_A)*np.dot(TD_B,COM_B))/R**5)
