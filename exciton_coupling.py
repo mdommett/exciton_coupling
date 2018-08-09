@@ -39,7 +39,11 @@ if __name__=='__main__':
                 print("PDA coupling: {:.3f} H".format(PDA_coupling))
             elif args.units=="ev":
                 print("PDA coupling: {:.3f} eV".format(PDA_coupling*au2ev))
+        else:
+            exit("The two G09 output files are needed!")
     ############################
 
     ############################
     # Coulomb ATC method:
+    elif args.method.upper()=="CATC":
+        if len(args.input)==2:
