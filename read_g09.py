@@ -32,7 +32,7 @@ def get_xyz(g09_file):
     """
     with open(g09_file) as f:
         # Get the number of atoms so we can iterate without loading the file into memory
-        for i,line in enumerate(f):
+        for line in f:
             # Ensures line is not blank
             if line.strip():
                 if line.split()[0]=="NAtoms=":
@@ -42,7 +42,7 @@ def get_xyz(g09_file):
         coordinates=[]
         # Reset the iterator to the top of the file
         f.seek(0)
-        for i,line in enumerate(f):
+        for line in f:
             if line.strip():
                 if "Input orientation:" in line:
                     for i in range(5):
@@ -77,7 +77,7 @@ def read_TD(g09_file,state):
     """
     with open(g09_file) as f:
         # Get the number of atoms so we can iterate without loading the file into memory
-        for i,line in enumerate(f):
+        for line in f:
             # Ensures line is not blank
             if line.strip():
                 if " Ground to excited state transition electric dipole moments (Au):" in line:
@@ -87,3 +87,41 @@ def read_TD(g09_file,state):
                     break
         f.close()
         return np.array([float(X),float(Y),float(Z)])
+
+def read_NTO(g09_file,natoms):
+    """
+    Reads a G09 logfile and returns the atomic centred Natural Transition Charges, obtained
+    via the G09 input line:
+    td=(nstates=1) nosymm Pop=NTO Density=(Transition=1)
+
+    Parameters
+    ----------
+    g09_file: Path to g09 log file
+        File path
+    natoms: Integer
+        Number of atoms
+    Returns
+    ----------
+    NTO: np.array
+        N array of NTO charges in order of atomic positions
+    """
+    NTO=np.zeros(natoms)
+    with open(g09_file) as f:
+        # Get the number of atoms so we can iterate without loading the file into memory
+        for line in f:
+            # Ensures line is not blank
+            if line.strip():
+                if " Mulliken charges:" in line:
+                    line = f.next()
+                    line = f.next()
+                    for i in range(natoms):
+                        charge_line = line.split()
+                        print(line)
+                        symbol = charge_line[1]
+                        charge = float(charge_line[2])
+                        # NTO charge is atomic number - charge
+                        NTO[i] = element(symbol).atomic-float(charge)
+                        line = f.next()
+
+        f.close()
+    return NTO
