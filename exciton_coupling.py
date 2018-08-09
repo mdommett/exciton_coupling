@@ -17,6 +17,7 @@ if __name__=='__main__':
 
     ############################
     # Point Dipole Approximation
+    ############################
     if args.method.upper()=="PDA":
         if len(args.input)==2:
             g09_1=args.input[0]
@@ -40,10 +41,14 @@ if __name__=='__main__':
             elif args.units=="ev":
                 print("PDA coupling: {:.3f} eV".format(PDA_coupling*au2ev))
         else:
-            exit("The two G09 output files are needed!")
+            exit("Error! Two G09 output files are needed!\nExiting")
     ############################
 
     ############################
     # Coulomb ATC method:
     elif args.method.upper()=="CATC":
         if len(args.input)==2:
+            print(read_g09.read_NTO(args.input[0],37))
+
+        else:
+            exit("Error! Two G09 output files are needed!\nExiting")
