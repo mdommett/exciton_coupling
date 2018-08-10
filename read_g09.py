@@ -61,7 +61,7 @@ def read_xyz(g09_file):
                     f.close()
         return coordinates
 
-def read_natoms(g09file):
+def read_natoms(g09_file):
     """
     Opens a g09 log file and returns the number of atoms in the system
 
@@ -83,6 +83,7 @@ def read_natoms(g09file):
                     natoms=(int(line.split()[3]))
                     break
         return natoms
+
 def read_TD(g09_file,state):
     """
     Reads a G09 logfile and returns the Transition Dipole vector for the specified
