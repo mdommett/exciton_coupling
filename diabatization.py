@@ -57,7 +57,7 @@ m.dommett@qmul.ac.uk
 import numpy as np
 from sys import exit,argv
 import argparse
-
+from periodic import element
 
 def get_TDM(file,state):
     """
