@@ -152,7 +152,7 @@ def read_SCF(g09_file):
     SCF=energies[-1]
     return SCF
 
-def read_TD(g09_file,state):
+def read_ES(g09_file,state):
     """
     Opens a g09 log file and returns the energy difference between the ground and
     specified state in atomic units
@@ -165,7 +165,7 @@ def read_TD(g09_file,state):
         Excited state number (<1)
     Returns
     ----------
-    TD: float
+    ES: float
         Energy difference in atomic units between the ground and specified state
 
     """
@@ -181,6 +181,6 @@ def read_TD(g09_file,state):
                     energies.append(float(line.split()[4]))
         f.close()
 
-        TD = energies[-1]/au2ev
+        ES = energies[-1]/au2ev
 
-    return TD
+    return ES
