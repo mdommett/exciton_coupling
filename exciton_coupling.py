@@ -10,8 +10,11 @@ if __name__=='__main__':
     au2ev=27.211396132
     parser = argparse.ArgumentParser()
     parser.add_argument("-m","--method",help="[PDA] Point Dipole Approximation or \
-    [CATC] Coulomb Atomic Transition Charges",required="True")
+    [CATC] Coulomb Atomic Transition Charges or\
+    [dE] Energy Difference",required="True")
     parser.add_argument("-u","--units",help="Output unit [ev] electronvolts or [au] Hartrees",type=str,required="True")
+    parser.add_argument("-ds","--dimerstates",help="Excited state of dimer to use",nargs=2,default=[1,2])
+
     parser.add_argument("input",help="Input files",type=str,nargs='*')
     user_input = argv[1:]
     args = parser.parse_args(user_input)
@@ -68,4 +71,15 @@ if __name__=='__main__':
         else:
             exit("Error! Two G09 output files are needed!\nExiting")
 
-    elif args.method.upper()=="SPLIT":
+    ############################
+    # dE Method
+    ############################
+    elif args.method.upper()=="DE":
+        g09_1=args.input[0]
+        TD_1=read_g09.read_TD(g09_1,min(args.dimerstates))
+        TD_2=read_g09.read_TD(g09_1,max(args.dimerstates))
+        dE_coupling=(TD_2-TD_1)/2
+        if args.units=="au":
+            print("dE coupling: {:.3f} H".format(dE_coupling))
+        elif args.units=="ev":
+            print("dE coupling: {:.3f} eV".format(dE_coupling*au2ev))
