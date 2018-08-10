@@ -2,6 +2,7 @@
 """
 from periodic import element
 import numpy as np
+au2ev=27.211396132
 def read_xyz(g09_file):
     """
     Opens a g09 log file and returns the first geometry in Input orientation.
@@ -125,4 +126,61 @@ def read_NTO(g09_file,natoms):
         f.close()
     return NTO
 
-    def read
+def read_SCF(g09_file):
+    """
+    Opens a g09 log file and returns the final SCF energy
+
+    Parameters
+    ----------
+    g09_file: Path to g09 log file
+        File path
+
+    Returns
+    ----------
+    SCF: float
+        Final SCF energy
+
+    """
+    energies=[]
+    with open(g09_file) as f:
+        for line in f:
+            # Ensures line is not blank
+            if line.strip():
+                if " SCF Done:" in line:
+                    energies.append(float(line.split()[4]))
+        f.close()
+    SCF=energies[-1]
+    return SCF
+
+def read_TD(g09_file,state):
+    """
+    Opens a g09 log file and returns the energy difference between the ground and
+    specified state in atomic units
+
+    Parameters
+    ----------
+    g09_file: Path to g09 log file
+        File path
+    state: Integer
+        Excited state number (<1)
+    Returns
+    ----------
+    TD: float
+        Energy difference in atomic units between the ground and specified state
+
+    """
+    if state <1 :
+        exit("Specified state must be an excited state (>0)")
+    SCF=read_SCF(g09_file)
+    energies=[]
+    with open(g09_file) as f:
+        for line in f:
+            # Ensures line is not blank
+            if line.strip():
+                if " Excited State   {}".format(state) in line:
+                    energies.append(float(line.split()[4]))
+        f.close()
+
+        TD = energies[-1]/au2ev
+
+    return TD
