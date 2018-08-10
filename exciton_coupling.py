@@ -23,8 +23,8 @@ if __name__=='__main__':
         if len(args.input)==2:
             g09_1=args.input[0]
             g09_2=args.input[1]
-            mol_1=read_g09.get_xyz(g09_1)
-            mol_2=read_g09.get_xyz(g09_2)
+            mol_1=read_g09.read_xyz(g09_1)
+            mol_2=read_g09.read_xyz(g09_2)
 
             coords_1=xyz.xyz_to_matrix(mol_1)
             symbols_1=xyz.symbols_from_xyz(mol_1)
@@ -52,8 +52,8 @@ if __name__=='__main__':
         if len(args.input)==2:
             g09_1=args.input[0]
             g09_2=args.input[1]
-            mol_1=read_g09.get_xyz(g09_1)
-            mol_2=read_g09.get_xyz(g09_2)
+            mol_1=read_g09.read_xyz(g09_1)
+            mol_2=read_g09.read_xyz(g09_2)
             coords_1=xyz.xyz_to_matrix(mol_1)
             coords_2=xyz.xyz_to_matrix(mol_2)
             NTO_1=read_g09.read_NTO(g09_1,len(mol_1))
@@ -67,3 +67,5 @@ if __name__=='__main__':
                 print("CATC coupling: {:.3f} eV".format(CATC_coupling*au2ev))
         else:
             exit("Error! Two G09 output files are needed!\nExiting")
+
+    elif args.method.upper()=="SPLIT":
