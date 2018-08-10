@@ -61,6 +61,28 @@ def read_xyz(g09_file):
                     f.close()
         return coordinates
 
+def read_natoms(g09file):
+    """
+    Opens a g09 log file and returns the number of atoms in the system
+
+    Parameters
+    ----------
+    g09_file: Path to g09 log file
+        File path
+
+    Returns
+    ----------
+    natoms: Integer
+    """
+    with open(g09_file) as f:
+        # Get the number of atoms so we can iterate without loading the file into memory
+        for line in f:
+            # Ensures line is not blank
+            if line.strip():
+                if line.split()[0]=="NAtoms=":
+                    natoms=(int(line.split()[3]))
+                    break
+        return natoms
 def read_TD(g09_file,state):
     """
     Reads a G09 logfile and returns the Transition Dipole vector for the specified
