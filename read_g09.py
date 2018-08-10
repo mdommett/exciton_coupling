@@ -2,7 +2,7 @@
 """
 from periodic import element
 import numpy as np
-def get_xyz(g09_file):
+def read_xyz(g09_file):
     """
     Opens a g09 log file and returns the first geometry in Input orientation.
     Iterators are used so that the file is not all loaded into memory, which
@@ -124,3 +124,5 @@ def read_NTO(g09_file,natoms):
 
         f.close()
     return NTO
+
+    def read
