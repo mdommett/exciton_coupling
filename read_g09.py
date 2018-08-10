@@ -116,7 +116,6 @@ def read_NTO(g09_file,natoms):
                     line = f.next()
                     for i in range(natoms):
                         charge_line = line.split()
-                        print(line)
                         symbol = charge_line[1]
                         charge = float(charge_line[2])
                         # NTO charge is atomic number - charge
