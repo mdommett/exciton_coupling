@@ -123,22 +123,29 @@ if __name__=='__main__':
                 if len(args.dimerfiles)==3:
 
                     dimer=args.dimerfiles[0]
-                    dimer_s1=args.dimerfiles[1]
-                    dimer_s2=args.dimerfiles[2]
+                    dimer_state_1=args.dimerfiles[1]
+                    dimer_state_2=args.dimerfiles[2]
 
                     monomer_A=args.monomerfiles[0]
                     monomer_B=args.monomerfiles[1]
 
-                    ATC_dimer_1=read_g09.read_ATC(dimer_s1)
-                    ATC_dimer_2=read_g09.read_ATC(dimer_s2)
+                    dimer_natoms=read_g09.read_natoms(dimer)
+                    monomer_A_natoms=read_g09.read_natoms(monomer_A)
+                    monomer_B_natoms=read_g09.read_natoms(monomer_B)
+
+                    ATC_dimer_state_1=read_g09.read_NTO(dimer_state_1,dimer_natoms)
+                    ATC_dimer_state_2=read_g09.read_NTO(dimer_state_2,dimer_natoms)
 
                     E_1=read_g09.read_ES(dimer,min(args.dimerstates))
                     E_2=read_g09.read_ES(dimer,max(args.dimerstates))
-                    
-                    ATC_monomer_A=read_g09.read_ATC(monomer_A)
-                    ATC_monomer_B=read_g09.read_ATC(monomer_B)
 
-                    H=diabatize.diabatize(ATC_dimer_1,ATC_dimer_2,ATC_monomer_A,ATC_monomer_B,E_1,E_2)
+                    ATC_monomer_A=read_g09.read_NTO(monomer_A,monomer_A_natoms)
+                    ATC_monomer_B=read_g09.read_NTO(monomer_B,monomer_B_natoms)
+
+                    ATC_monomer_AA=np.concatenate((ATC_monomer_A,ATC_monomer_A),axis=0)
+                    ATC_monomer_BB=np.concatenate((ATC_monomer_B,ATC_monomer_B),axis=0)
+
+                    H=diabatize.diabatize(ATC_dimer_state_1,ATC_dimer_state_2,ATC_monomer_AA,ATC_monomer_BB,E_1,E_2)
                     DIA_J=H[0,1]
                     if args.units=="au":
                         print("Diabatic coupling: {:.3f} eV".format(DIA_J))
