@@ -2,6 +2,7 @@
 import PDA
 import xyz
 import read_g09
+import CATC
 from sys import exit,argv
 import argparse
 
@@ -46,9 +47,23 @@ if __name__=='__main__':
 
     ############################
     # Coulomb ATC method:
+    ############################
     elif args.method.upper()=="CATC":
         if len(args.input)==2:
-            print(read_g09.read_NTO(args.input[0],37))
+            g09_1=args.input[0]
+            g09_2=args.input[1]
+            mol_1=read_g09.get_xyz(g09_1)
+            mol_2=read_g09.get_xyz(g09_2)
+            coords_1=xyz.xyz_to_matrix(mol_1)
+            coords_2=xyz.xyz_to_matrix(mol_2)
+            NTO_1=read_g09.read_NTO(g09_1,len(mol_1))
+            NTO_2=read_g09.read_NTO(g09_2,len(mol_2))
 
+            CATC_coupling=CATC.CATC_coupling(NTO_1,NTO_2,coords_1,coords_2)
+
+            if args.units=="au":
+                print("CATC coupling: {:.3f} H".format(CATC_coupling))
+            elif args.units=="ev":
+                print("CATC coupling: {:.3f} eV".format(CATC_coupling*au2ev))
         else:
             exit("Error! Two G09 output files are needed!\nExiting")
