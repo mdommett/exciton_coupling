@@ -144,7 +144,6 @@ def diabatize(dims1,dims2,monA,monB,E1,E2):
     dim=np.concatenate((dims1,dims2))
     mon=np.concatenate((monA,monB))
 
-
     M=np.dot(dim,mon.T)
 
     U,s,Vt= np.linalg.svd(M)
