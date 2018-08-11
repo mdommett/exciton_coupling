@@ -7,7 +7,7 @@ using the following methods:
 
 1. Energy splitting (dE) between the S<sub>1</sub> and S<sub>2</sub> states in a dimer:
 
-		$J_{ij}=\frac{1}{2}(E_{S_{2}}-E_{S_{1}})$
+    <img src="http://www.sciweavers.org/tex2img.php?eq=J_%7Bij%7D%3D%5Cfrac%7B1%7D%7B2%7D%28E_%7BS_%7B2%7D%7D-E_%7BS_%7B1%7D%7D%29&bc=White&fc=Black&im=gif&fs=12&ff=modern&edit=0" align="center" border="0" alt="J_{ij}=\frac{1}{2}(E_{S_{2}}-E_{S_{1}})" width="139" height="36" />
 2. Point dipole approximation (PDA) uses the interaction between transition dipole moments of the monomers:
 
     <img src="http://www.sciweavers.org/tex2img.php?eq=J_%7Bij%7D%3D%5Cfrac%7B%5Cboldsymbol%7B%5Cmu%7D_%7Bi%7D%5Cboldsymbol%7B%5Cmu%7D_%7Bj%7D%7D%7BR%5E%7B3%7D%7D-%5Cfrac%7B3%28%5Cboldsymbol%7B%5Cmu%7D_%7Bi%7D%5Ccdot%5Cboldsymbol%7BR%7D_%7Bij%7D%29%28%5Cboldsymbol%7BR%7D_%7Bij%7D%5Ccdot%5Cboldsymbol%7B%5Cmu%7D_%7Bj%7D%29%7D%7BR%5E%7B5%7D%7D&bc=White&fc=Black&im=gif&fs=12&ff=modern&edit=0" align="center" border="0" alt="J_{ij}=\frac{\boldsymbol{\mu}_{i}\boldsymbol{\mu}_{j}}{R^{3}}-\frac{3(\boldsymbol{\mu}_{i}\cdot\boldsymbol{R}_{ij})(\boldsymbol{R}_{ij}\cdot\boldsymbol{\mu}_{j})}{R^{5}}" width="244" height="39" />
