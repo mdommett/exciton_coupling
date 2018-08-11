@@ -28,8 +28,8 @@ There are in theory an infinite number of ways that **C** can perform this trans
 to find the best **C**, through single value decomposition. See the Supporting Information of their [paper](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.114.026402) for more details. In this package,
 two methods are implemented:
 
-        4A) Transition dipole moments
+    4A) Transition dipole moments
    
-        4B) Atomic transition charges
+    4B) Atomic transition charges
     
  Please see the documentation and tutorials for examples of how to use each of these 4 methods to calculate the exciton coupling of your systems.
