@@ -1,5 +1,7 @@
 # Exciton Coupling 
 
+## Introduction
+
 This program allows the user to calculate the exciton coupling between molecular dimers. Based on Kasha's theory,
 there are various methods to calculate the exciton coupling, each with their own set of approximations. This package analyses
 Gaussain 09 log files and allows the user to calculate the exciton coupling *J* between monomers *i* and *j*
@@ -8,6 +10,7 @@ using the following methods:
 1. Energy splitting (dE) between the S<sub>1</sub> and S<sub>2</sub> states in a dimer:
 
     <a href="https://www.codecogs.com/eqnedit.php?latex=J_{ij}=\frac{1}{2}(E_{S_{2}}-E_{S_{1}})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?J_{ij}=\frac{1}{2}(E_{S_{2}}-E_{S_{1}})" title="J_{ij}=\frac{1}{2}(E_{S_{2}}-E_{S_{1}})" /></a>
+
 2. Point dipole approximation (PDA) uses the interaction between transition dipole moments of the monomers:
 
     <a href="https://www.codecogs.com/eqnedit.php?latex=J_{ij}=\frac{\boldsymbol{\mu}_{i}\boldsymbol{\mu}_{j}}{R^{3}}-\frac{3(\boldsymbol{\mu}_{i}\cdot\boldsymbol{R}_{ij})(\boldsymbol{R}_{ij}\cdot\boldsymbol{\mu}_{j})}{R^{5}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?J_{ij}=\frac{\boldsymbol{\mu}_{i}\boldsymbol{\mu}_{j}}{R^{3}}-\frac{3(\boldsymbol{\mu}_{i}\cdot\boldsymbol{R}_{ij})(\boldsymbol{R}_{ij}\cdot\boldsymbol{\mu}_{j})}{R^{5}}" title="J_{ij}=\frac{\boldsymbol{\mu}_{i}\boldsymbol{\mu}_{j}}{R^{3}}-\frac{3(\boldsymbol{\mu}_{i}\cdot\boldsymbol{R}_{ij})(\boldsymbol{R}_{ij}\cdot\boldsymbol{\mu}_{j})}{R^{5}}" /></a>
@@ -32,4 +35,70 @@ two methods are implemented:
    
    4B) Atomic transition charges
     
- Please see the documentation and tutorials for examples of how to use each of these 4 methods to calculate the exciton coupling of your systems.
+
+## Usage
+
+All options of the program are set using the in-built flags and calling the main function, `exciton_coupling.py`. 
+
+#### Flags
+
+`-m`,`--method`
+
+Accepted arguments:
+    1. dE
+    2. PDA
+    3. CATC
+    4. DIA
+
+
+`-u`,`--units`
+
+Accepted arguments:
+    1. ev
+    2. au
+
+The units of the output coupling must be chosen using the `-u` flag, with `ev` (electron volts) or `au` (atomic units, Hartrees) accepted inputs. 
+
+`-mf`,`--monomerfiles`
+
+Accepted arguments:
+
+The names of the log files containing output from monomer calculations. These only need to be set for methods 2-4. In each case, two files should be given. 
+
+`-df`,`--dimerfiles`
+
+
+Accepted arguments:
+
+The names of the log files containing output from dimer calculations. These only need to be set for methods 1 and 4. 
+
+
+`-ms`,`--monstate`
+
+Accepted arguments:
+
+The number of the electronic excitation (1,2,3 ...) used in the monomer calculation. Represents calculating the coupling for the S<sub>N</sub> state.
+
+
+`-ds`,`--dstate`
+
+Accepted arguments:
+
+The number of the electronic excitation (1,2,3 ...) used in the dimer calculation. Represents calculating the coupling for the S<sub>N</sub> state. For the dE method, the input should be `-ds 1 2`. For the DIA method, the input should ususally be the same but you should check the character of the excitations to ensure that S<sub>1</sub> and S<sub>2</sub> in the dimer match the S<sub>1</sub> of the constituent monomers.
+
+`-p`, `--property `
+
+Accepted arguments:
+1. TDM
+2. ATC
+
+When using the DIA method, the property chosen to calculate the **C** matrix can be either the transition dipole moment or the atomic transition charges.
+
+## Examples
+    
+### dE
+
+Requirements: A g09 logfile of a dimer system where the first two excited states are calculated, for example using TD=(Nstates=2) in the Gaussian input file. This will then produce the logfile, for instance dimer.log. The dE exciton coupling is then calculated using:
+
+`exciton_coupling.py -m dE `
+
