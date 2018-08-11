@@ -98,7 +98,69 @@ When using the DIA method, the property chosen to calculate the **C** matrix can
     
 ### dE
 
-Requirements: A g09 logfile of a dimer system where the first two excited states are calculated, for example using TD=(Nstates=2) in the Gaussian input file. This will then produce the logfile, for instance dimer.log. The dE exciton coupling is then calculated using:
+A g09 logfile of a dimer system is required, where the first two excited states are calculated, for example using TD=(Nstates=2) in the Gaussian input file. This will then produce the logfile, for instance dimer.log. The dE exciton coupling is then calculated using:
 
-`exciton_coupling.py -m dE `
+`exciton_coupling.py -m dE -df dimer.log -ds 1 2 -u ev `
+
+where the output will be in eV and the  S<sub>1</sub> and  S<sub>2</sub> states are used. 
+
+### PDA
+
+Two g09 logfiles are required; one for each monomer. The nosymm option should be used:
+
+`exciton_coupling.py -m PDA -mf mon_1.log mon_2.log -u ev `
+
+### CATC
+
+Two g09 logfiles are required; one for each monomer. The nosymm option should be used. The ATC charges are caclulated in the Gaussian by requesting Population=(NTO,Transition=1) for the first excited state. 
+
+`exciton_coupling.py -m CATC -mf mon_1.log mon_2.log -u ev `
+
+### DIA
+
+#### TDM (Recommended)
+
+The DIA method using the transition dipole vectors (TDM) requires three log files; one dimer calculation and two monomer files. The atomic positions of the monomers in the monomer calculations should exactly match those in the dimer file. The nosymm option should be used in all three calculations. To calculate the coupling using the S<sub>1</sub> and S<sub>2</sub> states, using the DIA-TDM method, the following input should be used:
+
+`exciton_coupling.py -m DIA -p TDM -df dimer.log -mf mon_1.log mon_2.log -ds 1 2 -ms 1 -u ev.`
+
+#### ATC 
+
+The DIA method using the atomic transition charges (ATC) requires *five* log files; three dimer files, and two monomer files. 
+
+The dimer files:
+1. An initial dimer calculation to calculate the energy and the *densities*. For example:
+
+`%chk=dimer
+  #P WB97XD/def2-SVP TD=(nstates=2) density=all `
+  
+Upon completion of this calculation, two further calculations should be performed on the dimer, one for each electronic state, where the input should be:
+
+`%chk=dimer
+  #P WB97XD/def2-SVP density=(Read,Transition=1) `
+
+This will read the density of the first electronic transition and save the charges in the population analysis. The same should be done for the second state:
+
+`%chk=dimer
+  #P WB97XD/def2-SVP density=(Read,Transition=2) `
+  
+The output files should be saved as separate names, for instance as `dimer.log`, `dimer_s1.log` and `dimer_s2.log`. In the progam, the energy is read from `dimer.log` while the charges are read from the `dimer_s1.log` and `dimer_s2.log` files. For the monomer files, the following input can be used:
+
+`%chk=mon_1
+  #P WB97XD/def2-SVP TD=(nstates=1) density=(Transition=1)`
+  
+  and
+  
+  
+`%chk=mon_2
+  #P WB97XD/def2-SVP TD=(nstates=1) density=(Transition=1)`
+  
+Once all five files are created, the exciton coupling can be calculated using:
+
+`exciton_coupling.py -m DIA -p ATC -df dimer.log dimer_s1.log dimer_s2.log -mf mon_1.log mon_2.log -ds 1 2 -ms 1 -u ev.` 
+
+Examples of each usage are given in the `examples/` directory.
+
+
+
 
