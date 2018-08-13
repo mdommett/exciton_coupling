@@ -1,12 +1,16 @@
 #!/usr/bin/env python
-import PDA
-import xyz
-import read_g09
-import CATC
+import numpy as np
 from sys import exit,argv
 import argparse
+
+from exciton_coupling.utils import PDA
+from exciton_coupling.utils import xyz
+from exciton_coupling.utils import read_g09
+from exciton_coupling.utils import CATC
+
+
 import diabatize
-import numpy as np
+
 
 if __name__=='__main__':
     au2ev=27.211396132
