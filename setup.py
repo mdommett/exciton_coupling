@@ -8,7 +8,5 @@ setup(name='exciton_coupling',
       long_description=open('README.md').read(),
       author='Michael Dommett, Rachel Crespo-Otero',
       author_email='m.dommett@qmul.ac.uk',
-      install_requires=[
-        'periodic'],
       packages=['exciton_coupling',
                 'exciton_coupling.utils'])
