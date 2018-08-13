@@ -7,6 +7,7 @@ from sys import exit,argv
 import argparse
 import diabatize
 import numpy as np
+
 if __name__=='__main__':
     au2ev=27.211396132
     parser = argparse.ArgumentParser()
@@ -32,7 +33,7 @@ if __name__=='__main__':
     # Point Dipole Approximation
     ############################
     if args.method.upper()=="PDA":
-        if len(args.input)==2:
+        if len(args.monomerfiles)==2:
             g09_1=args.monomerfiles[0]
             g09_2=args.monomerfiles[1]
             mol_1=read_g09.read_xyz(g09_1)
