@@ -8,5 +8,10 @@ setup(name='exciton_coupling',
       long_description=open('README.md').read(),
       author='Michael Dommett, Rachel Crespo-Otero',
       author_email='m.dommett@qmul.ac.uk',
+      license='MIT',
+      classifiers=['Programming Language :: Python',
+      'Programming Language :: Python :: 3',
+      'Topic :: Scientific/Engineering :: Chemistry',
+      'Topic :: Scientific/Engineering :: Physics']
       packages=['exciton_coupling',
                 'exciton_coupling.utils'])
