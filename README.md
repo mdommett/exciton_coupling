@@ -35,6 +35,18 @@ two methods are implemented:
    
    4B) Atomic transition charges
     
+## Requirements
+
+The `exciton_coupling` is written in python3 are requires the following packages to be installed and in the python path:
+
+`numpy`
+
+`periodic`
+
+`sys`
+
+`argparse`
+
 
 ## Usage
 
