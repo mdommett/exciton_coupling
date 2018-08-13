@@ -1,0 +1,3 @@
+Example files to calculate the exciton coupling with the PDA method:
+
+exciton_coupling.py -m PDA -u ev -mf mon_0.log mon_1.log

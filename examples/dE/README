@@ -1,0 +1,9 @@
+Example log file to calculate the dE exciton coupling. 
+
+Usage:
+
+exciton_coupling.py -m dE -df dimer.log -u ev
+
+An option is to use states other than the first two states. This can be specified with:
+
+exciton_coupling.py -m dE -df dimer.log -u ev -ds 3 4

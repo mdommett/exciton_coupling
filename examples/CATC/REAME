@@ -1,0 +1,8 @@
+Example files to calculate the CATC exciton coupling. No supermolecular (whole dimer) calculation is required.
+ Each log file contains the output from a G09 calculation,
+where each calculation contains one monomer of the consituent dimer. The orientation should be kept constant, to
+ensure the dimer geometry, by using "nosymm" in the gaussian input card. 
+
+Usage:
+
+exciton_coupling.py -m CATC -u ev -mf mon_0.log mon_1.log

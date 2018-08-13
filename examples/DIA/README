@@ -1,0 +1,19 @@
+Example files to use the DIA method for the coupling. The DIA method can be used with one of two properties:
+
+1) TDM (Recommended)
+2) ATC
+
+When TDM is used, three calculations are needed - the first two excited states of the supermolecular dimer, and
+the first excited state of each of constituent monomers, using 'nosymm' throughout. With the ATC property, a further
+two calculations are required, to calculate the transition charges of the s1 and s2 states of the supermolecule. These 
+are inexpensive if the densities are read from the checkpoint file. Furthermore, with the ATC method, the atomic ordering
+is vitally important. In one monomer, the atomic ordering must correspond to the atomic ordering in the other monomer, and 
+should also be consisent with the dimer. 
+
+TDM Usage:
+
+exciton_coupling.py -m DIA -p TDM -df dimer.log -mf mon_0.log mon_1.log -u ev
+
+ATC Usage:
+
+exciton_coupling.py -m DIA -p TDM -df dimer.log dimer_s1.log dimer_s2.log -mf mon_0.log mon_1.log -u ev
