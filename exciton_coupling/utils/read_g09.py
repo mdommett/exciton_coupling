@@ -51,7 +51,8 @@ def read_xyz(g09_file):
                         line=next(f)
                     for i in range(natoms):
                         linesplit=line.split()
-                        symb=str(elements(linesplit[1]).symbol)
+
+                        symb=str(elements.element(int(linesplit[1])).symbol)
                         x=float(linesplit[3])
                         y=float(linesplit[4])
                         z=float(linesplit[5])
@@ -106,7 +107,7 @@ def read_TD(g09_file,state):
             if line.strip():
                 if " Ground to excited state transition electric dipole moments (Au):" in line:
                     for i in range(state+1):
-                        line=f.next()
+                        line=next(f)
                     s,X,Y,Z,DipS,Osc = line.split()
                     break
         f.close()
@@ -136,14 +137,14 @@ def read_NTO(g09_file,natoms):
             # Ensures line is not blank
             if line.strip():
                 if " Mulliken charges:" in line:
-                    line = f.next()
-                    line = f.next()
+                    line = next(f)
+                    line = next(f)
                     for i in range(natoms):
                         charge_line = line.split()
                         symbol = charge_line[1]
                         charge = float(charge_line[2])
                         # NTO charge is atomic number - charge
-                        NTO[i] = elements(symbol).atomic-float(charge)
+                        NTO[i] = elements.element(symbol).atomic-float(charge)
                         line = f.next()
 
         f.close()
