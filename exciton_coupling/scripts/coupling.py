@@ -21,8 +21,8 @@ if __name__=='__main__':
     parser.add_argument("-mf","--monomerfiles",help="The log files of the monomer calculations\
     for the diabatization procedure",nargs=2)
     parser.add_argument("-df","--dimerfiles",help="The log files of the dimer calculation",nargs='*')
-    parser.add_argument("-ms","--monstate",help="Excited state to use for the monomer", default=1)
-    parser.add_argument("-ds","--dimerstates",help="Excited state of dimer to use",nargs=2,default=[1,2])
+    parser.add_argument("-ms","--monstate",help="Excited state to use for the monomer", default=1,type=int)
+    parser.add_argument("-ds","--dimerstates",help="Excited state of dimer to use",nargs=2,default=[1,2],type=int)
     parser.add_argument("-u","--units",help="Output unit [ev] electronvolts or [au] Hartrees",type=str,required="True")
 
 
@@ -107,7 +107,7 @@ if __name__=='__main__':
     elif args.method.upper()=="DIA":
         if len(args.monomerfiles)==2:
             if args.property.upper()=="TDM":
-                dimer=args.dimerfiles
+                dimer=args.dimerfiles[0]
                 monomer_A=args.monomerfiles[0]
                 monomer_B=args.monomerfiles[1]
                 TD_1=read_g09.read_TD(dimer,min(args.dimerstates))
