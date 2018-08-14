@@ -145,7 +145,7 @@ def read_NTO(g09_file,natoms):
                         charge = float(charge_line[2])
                         # NTO charge is atomic number - charge
                         NTO[i] = elements.element(symbol).atomic-float(charge)
-                        line = f.next()
+                        line = next(f)
 
         f.close()
     return NTO
