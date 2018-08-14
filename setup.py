@@ -17,4 +17,4 @@ setup(name='exciton_coupling',
       packages=['exciton_coupling',
 				'exciton_coupling.scripts',
                 'exciton_coupling.utils'],
-      scripts=['exciton_coupling/scripts/exciton_coupling.py'])
+      scripts=['exciton_coupling/scripts/coupling.py'])
