@@ -2,7 +2,7 @@
 Dipole approximation
 """
 import numpy as np
-from periodic import element
+from exciton_coupling.utils import elements
 def centre_of_mass(symbols,coordinates):
     """
     Calculates the centre of mass (COM) for a set of atomic positions, based on:
@@ -24,7 +24,7 @@ def centre_of_mass(symbols,coordinates):
     """
     if len(symbols)!=len(coordinates):
         exit("Inputs not of the same dimension!")
-    masses = np.array([element(i).mass for i in symbols])
+    masses = np.array([elements(i).mass for i in symbols])
     mass_sum = np.sum(masses)
 
     x_coords=coordinates[:,0]

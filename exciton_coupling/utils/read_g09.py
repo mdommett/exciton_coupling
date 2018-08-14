@@ -1,6 +1,6 @@
 """ Read and extracts information from gaussian 09 log files
 """
-from periodic import element
+from exciton_coupling.utils import elements
 import numpy as np
 au2ev=27.211396132
 def read_xyz(g09_file):
@@ -48,15 +48,15 @@ def read_xyz(g09_file):
                 if "Input orientation:" in line:
                     for i in range(5):
                         # Skip 5 lines to start of coordinates
-                        line=f.next()
+                        line=next(f)
                     for i in range(natoms):
                         linesplit=line.split()
-                        symb=str(element(linesplit[1]).symbol)
+                        symb=str(elements(linesplit[1]).symbol)
                         x=float(linesplit[3])
                         y=float(linesplit[4])
                         z=float(linesplit[5])
                         coordinates.append([symb,x,y,z])
-                        line=f.next()
+                        line=next(f)
                     break
                     f.close()
         return coordinates
@@ -143,7 +143,7 @@ def read_NTO(g09_file,natoms):
                         symbol = charge_line[1]
                         charge = float(charge_line[2])
                         # NTO charge is atomic number - charge
-                        NTO[i] = element(symbol).atomic-float(charge)
+                        NTO[i] = elements(symbol).atomic-float(charge)
                         line = f.next()
 
         f.close()
