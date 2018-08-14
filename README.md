@@ -63,7 +63,7 @@ The `exciton_coupling` is written in python3 are requires the following packages
 
 4. Install:
 
-`python setup.py build_ext --inplace install`
+`python3 setup.py build_ext --inplace install`
 
 
 ## Usage
