@@ -7,10 +7,7 @@ from exciton_coupling.utils import PDA
 from exciton_coupling.utils import xyz
 from exciton_coupling.utils import read_g09
 from exciton_coupling.utils import CATC
-
-
-import diabatize
-
+from exciton_coupling.utils import diabatize
 
 if __name__=='__main__':
     au2ev=27.211396132

@@ -15,5 +15,6 @@ setup(name='exciton_coupling',
       'Topic :: Scientific/Engineering :: Chemistry',
       'Topic :: Scientific/Engineering :: Physics'],
       packages=['exciton_coupling',
+				'exciton_coupling.scripts',
                 'exciton_coupling.utils'],
-      scripts=['exciton_coupling/exciton_coupling.py'])
+      scripts=['exciton_coupling/scripts/exciton_coupling.py'])
