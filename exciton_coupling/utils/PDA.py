@@ -2,7 +2,7 @@
 Dipole approximation
 """
 import numpy as np
-from periodic import element
+from periodic import element,mass
 def centre_of_mass(symbols,coordinates):
     """
     Calculates the centre of mass (COM) for a set of atomic positions, based on:
