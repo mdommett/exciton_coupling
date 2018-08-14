@@ -37,11 +37,9 @@ two methods are implemented:
     
 ## Requirements
 
-The `exciton_coupling` is written in python3 are requires the following packages to be installed and in the python path:
+The `exciton_coupling` is written in python3 and requires the following packages to be installed and in the python path:
 
 `numpy`
-
-`periodic`
 
 `sys`
 
