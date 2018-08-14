@@ -156,17 +156,21 @@ The dimer files:
 1. An initial dimer calculation to calculate the energy and the *densities*. For example:
 
 `%chk=dimer
+
+
   #P WB97XD/def2-SVP TD=(nstates=2) density=all `
   
 Upon completion of this calculation, two further calculations should be performed on the dimer, one for each electronic state, where the input should be:
 
 `%chk=dimer
-  #P WB97XD/def2-SVP density=(Read,Transition=1) `
+  #P WB97XD/def2-SVP density=(Checkpoint,Transition=1) `
 
 This will read the density of the first electronic transition and save the charges in the population analysis. The same should be done for the second state:
 
 `%chk=dimer
-  #P WB97XD/def2-SVP density=(Read,Transition=2) `
+
+
+  #P WB97XD/def2-SVP density=(Checkpoint,Transition=2) `
   
 The output files should be saved as separate names, for instance as `dimer.log`, `dimer_s1.log` and `dimer_s2.log`. In the progam, the energy is read from `dimer.log` while the charges are read from the `dimer_s1.log` and `dimer_s2.log` files. For the monomer files, the following input can be used:
 
