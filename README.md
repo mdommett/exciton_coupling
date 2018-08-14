@@ -55,13 +55,9 @@ The `exciton_coupling` is written in python3 and requires the following packages
 
 `cd exciton_coupling`
 
-3. Ensure you have the required packages installed:
-
-`pip3 install -r requirements.txt`
-
 4. Install:
 
-`python3 setup.py build_ext --inplace install`
+`pip3 install .`
 
 
 ## Usage
