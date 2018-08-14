@@ -61,12 +61,13 @@ The `exciton_coupling` is written in python3 are requires the following packages
 
 `pip3 install -r requirements.txt`
 
-4. Add the location of the parent directory to your python path in your bashrc or bash_profile:
+4. Add the location of the parent directory to your $PATH and $PYTHONPATH in your bashrc or bash_profile:
 
 `export exciton_coupling=/path/to/parent/directory`
 
 `export PYTHONPATH=$exciton_coupling:$PYTHONPATH`
 
+`export PATH=$exciton_coupling:$PATH`
 ## Usage
 
 All options of the program are set using the in-built flags and calling the main function, `exciton_coupling.py`. 
