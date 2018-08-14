@@ -86,17 +86,20 @@ if __name__=='__main__':
     # dE Method
     ############################
     elif args.method.upper()=="DE":
-        if len(args.dimerfiles)==1:
-            g09_1=args.dimerfiles[0]
-            ES_1=read_g09.read_ES(g09_1,min(args.dimerstates))
-            ES_2=read_g09.read_ES(g09_1,max(args.dimerstates))
-            dE_coupling=(ES_2-ES_1)/2
-            if args.units=="au":
-                print("dE coupling: {:.3f} H".format(dE_coupling))
-            elif args.units=="ev":
-                print("dE coupling: {:.3f} eV".format(dE_coupling*au2ev))
+        if args.dimerfiles is not None:
+            if len(args.dimerfiles)==1:
+                g09_1=args.dimerfiles[0]
+                ES_1=read_g09.read_ES(g09_1,min(args.dimerstates))
+                ES_2=read_g09.read_ES(g09_1,max(args.dimerstates))
+                dE_coupling=(ES_2-ES_1)/2
+                if args.units=="au":
+                    print("dE coupling: {:.3f} H".format(dE_coupling))
+                elif args.units=="ev":
+                    print("dE coupling: {:.3f} eV".format(dE_coupling*au2ev))
+            else:
+                exit("Error! For the DE method, one dimer file (-df) should be specified.")
         else:
-            exit("Error! For the DE method, one dimer file (-df) should be specified.")
+            exit("Error! For the DE method, a dimer file (-df) must be specified.")
     ############################
     # Diabatization Method
     ############################
