@@ -50,13 +50,17 @@ The `exciton_coupling` is written in python3 are requires the following packages
 ## Installation
 
 1. Git clone this repository to the desired location on your local computer:
+
 `git clone https://github.com/mdommett/exciton_coupling.git`
 
 2. Ensure you have the required packages installed:
+
 `pip3 install -r requirements.txt`
 
 3. Add the location of the parent directory to your python path in your bashrc or bash_profile:
+
 `export exciton_coupling=/path/to/parent/directory`
+
 `export PYTHONPATH=$exciton_coupling:$PYTHONPATH`
 
 ## Usage
