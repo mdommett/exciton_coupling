@@ -132,13 +132,13 @@ where the output will be in eV and the  S<sub>1</sub> and  S<sub>2</sub> states 
 
 Two g09 logfiles are required; one for each monomer. The nosymm option should be used:
 
-`coupling.py -m PDA -mf mon_1.log mon_2.log -u ev `
+`coupling.py -m PDA -mf mon_0.log mon_1.log -u ev `
 
 ### CATC
 
 Two g09 logfiles are required; one for each monomer. The nosymm option should be used. The ATC charges are caclulated in the Gaussian by requesting Population=(NTO,Transition=1) for the first excited state. 
 
-`coupling.py -m CATC -mf mon_1.log mon_2.log -u ev `
+`coupling.py -m CATC -mf mon_0.log mon_1.log -u ev `
 
 ### DIA
 
@@ -146,7 +146,7 @@ Two g09 logfiles are required; one for each monomer. The nosymm option should be
 
 The DIA method using the transition dipole vectors (TDM) requires three log files; one dimer calculation and two monomer files. The atomic positions of the monomers in the monomer calculations should exactly match those in the dimer file. The nosymm option should be used in all three calculations. To calculate the coupling using the S<sub>1</sub> and S<sub>2</sub> states, using the DIA-TDM method, the following input should be used:
 
-`coupling.py -m DIA -p TDM -df dimer.log -mf mon_1.log mon_2.log -ds 1 2 -ms 1 -u ev.`
+`coupling.py -m DIA -p TDM -df dimer.log -mf mon_0.log mon_1.log -ds 1 2 -ms 1 -u ev.`
 
 #### ATC 
 
@@ -185,7 +185,7 @@ The output files should be saved as separate names, for instance as `dimer.log`,
   
 Once all five files are created, the exciton coupling can be calculated using:
 
-`coupling.py -m DIA -p ATC -df dimer.log dimer_s1.log dimer_s2.log -mf mon_1.log mon_2.log -ds 1 2 -ms 1 -u ev.` 
+`coupling.py -m DIA -p ATC -df dimer.log dimer_s1.log dimer_s2.log -mf mon_0.log mon_1.log -ds 1 2 -ms 1 -u ev.` 
 
 Examples of each usage are given in the `examples/` directory.
 
