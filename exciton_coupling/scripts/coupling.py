@@ -53,7 +53,7 @@ if __name__=='__main__':
             PDA_coupling=PDA.PDA_coupling(TD_1,TD_2,COM_1,COM_2)
             if args.units=="au":
                 print("PDA coupling: {:.3f} H".format(PDA_coupling))
-            elif args.units=="ev":
+            else:
                 print("PDA coupling: {:.3f} eV".format(PDA_coupling*au2ev))
         else:
             exit("Error! Two monomer files (mf) of G09 output are needed!")
@@ -77,7 +77,7 @@ if __name__=='__main__':
 
             if args.units=="au":
                 print("CATC coupling: {:.3f} H".format(CATC_coupling))
-            elif args.units=="ev":
+            else:
                 print("CATC coupling: {:.3f} eV".format(CATC_coupling*au2ev))
         else:
             exit("Error! Two monomer files (mf) of G09 output are needed!")
@@ -94,7 +94,7 @@ if __name__=='__main__':
                 dE_coupling=(ES_2-ES_1)/2
                 if args.units=="au":
                     print("dE coupling: {:.3f} H".format(dE_coupling))
-                elif args.units=="ev":
+                else:
                     print("dE coupling: {:.3f} eV".format(dE_coupling*au2ev))
             else:
                 exit("Error! For the DE method, one dimer file (-df) should be specified.")
@@ -121,7 +121,7 @@ if __name__=='__main__':
                 DIA_J=H[0,1]
                 if args.units=="au":
                     print("Diabatic coupling: {:.3f} eV".format(DIA_J))
-                elif args.units=="ev":
+                else:
                     print("Diabatic coupling: {:.3f} eV".format(DIA_J*au2ev))
 
             elif args.property.upper()=="ATC":
@@ -154,8 +154,9 @@ if __name__=='__main__':
                     DIA_J=H[0,1]
                     if args.units=="au":
                         print("Diabatic coupling: {:.3f} eV".format(DIA_J))
-                    elif args.units=="ev":
+                    else:
                         print("Diabatic coupling: {:.3f} eV".format(DIA_J*au2ev))
+
         else:
             exit("Error! Two monomer files (-mf) and one dimer file (-df) must\
             be given!")
