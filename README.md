@@ -146,7 +146,7 @@ Two g09 logfiles are required; one for each monomer. The nosymm option should be
 
 The DIA method using the transition dipole vectors (TDM) requires three log files; one dimer calculation and two monomer files. The atomic positions of the monomers in the monomer calculations should exactly match those in the dimer file. The nosymm option should be used in all three calculations. To calculate the coupling using the S<sub>1</sub> and S<sub>2</sub> states, using the DIA-TDM method, the following input should be used:
 
-`coupling.py -m DIA -p TDM -df dimer.log -mf mon_0.log mon_1.log -ds 1 2 -ms 1 -u ev.`
+`coupling.py -m DIA -p TDM -df dimer.log -mf mon_0.log mon_1.log -ds 1 2 -ms 1 -u ev`
 
 #### ATC 
 
