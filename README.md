@@ -185,7 +185,7 @@ The output files should be saved as separate names, for instance as `dimer.log`,
   
 Once all five files are created, the exciton coupling can be calculated using:
 
-`coupling.py -m DIA -p ATC -df dimer.log dimer_s1.log dimer_s2.log -mf mon_0.log mon_1.log -ds 1 2 -ms 1 -u ev.` 
+`coupling.py -m DIA -p ATC -df dimer.log dimer_s1.log dimer_s2.log -mf mon_0.log mon_1.log -ds 1 2 -ms 1 -u ev` 
 
 Examples of each usage are given in the `examples/` directory.
 
